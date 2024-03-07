@@ -1,0 +1,15 @@
+class Solution:
+    def palindromePairs(self, words: List[str]) -> List[List[int]]:
+        res = []
+        dic = {}
+        for i, word in enumerate(words):
+            dic[word] = i
+        for i, word in enumerate(words):
+            for j in range(len(word)+1):
+                before = word[:j]
+                after = word[j:]
+                if before[::-1] in dic and dic[before[::-1]] != i and after == after[::-1]:
+                    res.append([i,dic[before[::-1]]])
+                if j > 0 and after[::-1] in dic and dic[after[::-1]] != i and before == before[::-1]:
+                    res.append([dic[after[::-1]],i])
+        return res
