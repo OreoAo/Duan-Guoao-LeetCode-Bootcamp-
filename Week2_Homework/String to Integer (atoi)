@@ -1,0 +1,18 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        Imax = 2**31 - 1
+        Imin = -2**31
+        strs = s.lstrip()
+        num_re = re.compile(r'^[\+\-]?\d+')
+        # num_re = re.compile(r'^([\+\-]?\d+)')
+        # match = num_re.match(strs)
+        # if not match:
+        #     return 0
+        # nums = int(match.group(1))
+        nums = num_re.findall(strs)
+        if len(nums) ==0:
+            return 0
+        else:
+            num = int(nums[0])
+
+        return max(Imin,min(Imax,num)) 
