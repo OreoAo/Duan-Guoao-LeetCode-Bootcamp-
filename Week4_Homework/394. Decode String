@@ -1,0 +1,17 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        res =""
+        count = 0
+        for i in s:
+            if i =="[":
+                stack.append([count,res])
+                res, count = "",0
+            elif i == "]":
+                cur_count, last_res = stack.pop()
+                res = last_res + cur_count*res
+            elif "0" <= i <= "9":
+                count = count*10 + int(i)
+            else:
+                res += i
+        return res
