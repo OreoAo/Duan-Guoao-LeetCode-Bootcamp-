@@ -1,0 +1,14 @@
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        s=sum(nums)
+        if s%2!=0:
+            return False
+        ss=s//2
+        nums.sort()
+        def dfs(i,tmp):
+            if tmp==0:
+                return True
+            if i==len(nums) or nums[i]>tmp:
+                return False
+            return dfs(i+1,tmp-nums[i]) or dfs(i+1,tmp)
+        return dfs(0,ss)
